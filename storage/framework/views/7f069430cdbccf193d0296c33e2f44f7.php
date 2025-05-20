@@ -1,10 +1,8 @@
-@extends('layouts.base', ['subtitle' => 'Cadastro'])
-
-@section('body-attribuet')
+<?php $__env->startSection('body-attribuet'); ?>
 class="authentication-bg"
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="account-pages py-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -13,18 +11,18 @@ class="authentication-bg"
                     <div class="card-body p-5">
                         <div class="text-center">
                             <div class="mx-auto mb-4 text-center auth-logo">
-                                <a href="{{ route('any', 'index') }}" class="logo-dark">
+                                <a href="<?php echo e(route('any', 'index')); ?>" class="logo-dark">
                                     <img src="/images/logo-dark.png" height="80" alt="logo escuro">
                                 </a>
 
-                                <a href="{{ route('any', 'index') }}" class="logo-light">
+                                <a href="<?php echo e(route('any', 'index')); ?>" class="logo-light">
                                     <img src="/images/logo-light.png" height="80" alt="logo claro">
                                 </a>
                             </div>
                             <h4 class="fw-bold text-dark mb-2">Cadastro</h4>
                         </div>
 
-                        <form action="{{ route('any', 'index') }}" class="mt-4">
+                        <form action="<?php echo e(route('any', 'index')); ?>" class="mt-4">
                             <div class="mb-3">
                                 <label class="form-label" for="example-name">Nome</label>
                                 <input type="text" id="example-name" name="example-name" class="form-control"
@@ -55,11 +53,13 @@ class="authentication-bg"
                 </div>
                 <p class="text-center mt-4 text-white text-opacity-50">
                     Já tem uma conta?
-                    <a href="{{ route('second', ['auth', 'signin']) }}"
+                    <a href="<?php echo e(route('second', ['auth', 'signin'])); ?>"
                         class="text-decoration-none text-white fw-bold">Entrar</a>
                 </p>
             </div>
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.base', ['subtitle' => 'Cadastro'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\leopa\Taplox-Laravel_v1.0\Taplox-Laravel\resources\views/auth/signup.blade.php ENDPATH**/ ?>

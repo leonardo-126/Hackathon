@@ -1,10 +1,3 @@
-/**
-* Theme: Taplox- Responsive Bootstrap 5 Admin Dashboard
-* Author: Stackbros
-* Module/App: Theme Config Js
-*/
-
-
 (function () {
 
      var savedConfig = sessionStorage.getItem("__TAPLOX_CONFIG__");

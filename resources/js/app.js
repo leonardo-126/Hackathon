@@ -1,9 +1,3 @@
-/**
-* Theme: Taplox- Responsive Bootstrap 5 Admin Dashboard
-* Author: Stackbros
-* Module/App: Main Js
-*/
-
 // Components
 import bootstrap from 'bootstrap/dist/js/bootstrap'
 window.bootstrap = bootstrap;

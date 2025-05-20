@@ -1,10 +1,8 @@
-@extends('layouts.base', ['subtitle' => 'Redefinir Senha'])
-
-@section('body-attribuet')
+<?php $__env->startSection('body-attribuet'); ?>
 class="authentication-bg"
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="account-pages py-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -13,18 +11,18 @@ class="authentication-bg"
                     <div class="card-body p-5">
                         <div class="text-center">
                             <div class="mx-auto mb-4 text-center auth-logo">
-                                <a href="{{ route('any', 'index') }}" class="logo-dark">
+                                <a href="<?php echo e(route('any', 'index')); ?>" class="logo-dark">
                                     <img src="/images/logo-dark.png" height="60" alt="logo escuro">
                                 </a>
 
-                                <a href="{{ route('any', 'index') }}" class="logo-light">
+                                <a href="<?php echo e(route('any', 'index')); ?>" class="logo-light">
                                     <img src="/images/logo-light.png" height="60" alt="logo claro">
                                 </a>
                             </div>
                             <h4 class="fw-bold text-dark mb-2">Redefinir Senha</h4>
                             <p class="text-muted">Informe seu endereço de e-mail e enviaremos instruções para redefinir sua senha.</p>
                         </div>
-                        <form action="{{ route('any', 'index') }}" class="mt-4">
+                        <form action="<?php echo e(route('any', 'index')); ?>" class="mt-4">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Endereço de E-mail</label>
                                 <input type="email" class="form-control" id="email"
@@ -40,11 +38,13 @@ class="authentication-bg"
                 </div>
                 <p class="text-center mt-4 text-white text-opacity-50">
                     Voltar para 
-                    <a href="{{ route('second', ['auth', 'signup']) }}"
+                    <a href="<?php echo e(route('second', ['auth', 'signup'])); ?>"
                         class="text-decoration-none text-white fw-bold">Entrar</a>
                 </p>
             </div>
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.base', ['subtitle' => 'Redefinir Senha'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\leopa\Taplox-Laravel_v1.0\Taplox-Laravel\resources\views/auth/password.blade.php ENDPATH**/ ?>

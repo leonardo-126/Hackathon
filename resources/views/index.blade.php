@@ -4,7 +4,7 @@
 
 @include('layouts.partials.page-title', ['title' => 'Taplox', 'subtitle' => 'Dashboard'])
 <div class="row">
-    <!-- Card 1 -->
+    <!-- Card 1 
     <div class="col-md-6 col-xl-3">
         <div class="card">
             <div class="card-body">
@@ -31,8 +31,8 @@
             </div>
         </div>
     </div>
-
-    <!-- Card 2 -->
+-->
+    <!-- Card 2 
     <div class="col-md-6 col-xl-3">
         <div class="card">
             <div class="card-body">
@@ -59,8 +59,8 @@
             </div>
         </div>
     </div>
-
-    <!-- Card 3 -->
+    -->
+    <!-- Card 3
     <div class="col-md-6 col-xl-3">
         <div class="card">
             <div class="card-body">
@@ -87,7 +87,7 @@
             </div>
         </div>
     </div>
-
+-->
     <!-- Card 4 -->
     <div class="col-md-6 col-xl-3">
         <div class="card">
@@ -139,9 +139,10 @@
 
         </div> <!-- end card-->
     </div> <!-- end col -->
-
+    
     <div class="col-lg-6">
         <div class="card">
+            <!--
             <div
                 class="d-flex card-header justify-content-between align-items-center border-bottom border-dashed">
                 <h4 class="card-title">Sessions by Country</h4>
@@ -151,16 +152,14 @@
                         View Data
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item">Download</a>
-                        <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item">Export</a>
-                        <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item">Import</a>
                     </div>
                 </div>
             </div>
-
+            -->
+            <!--
             <div class="card-body pt-0">
                 <div class="row align-items-center">
                     <div class="col-lg-7">
@@ -169,7 +168,6 @@
                     </div>
                     <div class="col-lg-5" dir="ltr">
                         <div class="p-3 pb-0">
-                            <!-- Country Data -->
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="mb-1">
                                     <iconify-icon icon="circle-flags:us"
@@ -190,7 +188,6 @@
                                 </div>
                             </div>
 
-                            <!-- Country Data -->
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="mb-1">
                                     <iconify-icon icon="circle-flags:ru"
@@ -211,7 +208,6 @@
                                 </div>
                             </div>
 
-                            <!-- Country Data -->
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="mb-1">
                                     <iconify-icon icon="circle-flags:cn"
@@ -232,7 +228,6 @@
                                 </div>
                             </div>
 
-                            <!-- Country Data -->
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="mb-1">
                                     <iconify-icon icon="circle-flags:ca"
@@ -255,7 +250,7 @@
                         </div>
                     </div>
                 </div>
-            </div> <!-- end card-body-->
+            </div> end card-body-->
 
 
         </div> <!-- end card-->
@@ -266,22 +261,23 @@
 <div class="row">
     <div class="col-xl-4">
         <div class="card">
+            <!--
             <div class="card-body">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h4 class="card-title">New Users</h4>
+                    <h4 class="card-title">Novos Alunos</h4>
 
                     <a href="#!" class="btn btn-sm btn-primary">
                         <i class="bx bx-plus me-1"></i>Add New User
                     </a>
                 </div>
-            </div> <!-- end card body -->
+            </div> end card body -->
 
             <div class="table-responsive table-centered">
                 <table class="table mb-0">
                     <thead class="bg-light bg-opacity-50">
                         <th class="border-0 py-2">Date</th>
                         <th class="border-0 py-2">User</th>
-                        <th class="border-0 py-2">Account</th>
+                        <th class="border-0 py-2">Account</th>-->
                         <th class="border-0 py-2">Username</th>
                     </thead>
                     <tbody>
@@ -290,7 +286,7 @@
                             <td><img src="/images/users/avatar-2.jpg" alt="avatar-2"
                                     class="img-fluid avatar-xs rounded-circle"> <span
                                     class="align-middle ms-1">Dan Adrick</span></td>
-                            <td><span class="badge badge-soft-success">Verified</span></td>
+                            <td><span class="badge badge-soft-success">risk</span></td>
                             <td>@omions </td>
                         </tr>
                         <tr>
@@ -298,7 +294,7 @@
                             <td><img src="/images/users/avatar-3.jpg" alt="avatar-2"
                                     class="img-fluid avatar-xs rounded-circle"> <span
                                     class="align-middle ms-1">Daniel Olsen</span></td>
-                            <td><span class="badge badge-soft-success">Verified</span></td>
+                            <td><span class="badge badge-soft-success">risk</span></td>
                             <td>@alliates </td>
                         </tr>
                         <tr>
@@ -306,7 +302,7 @@
                             <td><img src="/images/users/avatar-4.jpg" alt="avatar-2"
                                     class="img-fluid avatar-xs rounded-circle"> <span
                                     class="align-middle ms-1">Jack Roldan</span></td>
-                            <td><span class="badge badge-soft-warning">Pending</span></td>
+                            <td><span class="badge badge-soft-warning">risk</span></td>
                             <td>@griys </td>
                         </tr>
                         <tr>
@@ -314,7 +310,7 @@
                             <td><img src="/images/users/avatar-5.jpg" alt="avatar-2"
                                     class="img-fluid avatar-xs rounded-circle"> <span
                                     class="align-middle ms-1">Betty Cox</span></td>
-                            <td><span class="badge badge-soft-success">Verified</span></td>
+                            <td><span class="badge badge-soft-success">low risk</span></td>
                             <td>@reffon </td>
                         </tr>
                         <tr>
@@ -322,7 +318,7 @@
                             <td><img src="/images/users/avatar-6.jpg" alt="avatar-2"
                                     class="img-fluid avatar-xs rounded-circle"> <span
                                     class="align-middle ms-1">Carlos Johnson</span></td>
-                            <td><span class="badge badge-soft-danger">Blocked</span></td>
+                            <td><span class="badge badge-soft-danger">low risk</span></td>
                             <td>@bebo </td>
                         </tr>
                     </tbody>
@@ -359,7 +355,7 @@
             </div>
         </div> <!-- end card-->
     </div> <!-- end col -->
-
+    <!--
     <div class="col-xl-8">
         <div class="card">
             <div class="card-body">
@@ -370,7 +366,8 @@
                         <i class="bx bx-plus me-1"></i>Create Order
                     </a>
                 </div>
-            </div> <!-- end card body -->
+            </div> end card body -->
+            <!--
             <div class="table-responsive table-centered">
                 <table class="table mb-0">
                     <thead class="bg-light bg-opacity-50">
@@ -383,7 +380,7 @@
                             <th class="border-0 py-2">Payment Type</th>
                             <th class="border-0 py-2">Status</th>
                         </tr>
-                    </thead> <!-- end thead-->
+                    </thead> 
                     <tbody>
                         <tr>
                             <td><a href="#!">#TZ5625</a></td>
@@ -430,9 +427,9 @@
                             <td>Credit Card</td>
                             <td><i class="bx bxs-circle text-primary me-1"></i>Processing</td>
                         </tr>
-                    </tbody> <!-- end tbody -->
-                </table> <!-- end table -->
-            </div> <!-- table responsive -->
+                    </tbody> 
+                </table> 
+            </div>
             <div
                 class="align-items-center justify-content-between row g-0 text-center text-sm-start p-3 border-top">
                 <div class="col-sm">
@@ -461,7 +458,7 @@
                     </ul>
                 </div>
             </div>
-        </div> <!-- end card -->
+        </div> end card -->
     </div> <!-- end col -->
 </div> <!-- end row -->
 @endsection
