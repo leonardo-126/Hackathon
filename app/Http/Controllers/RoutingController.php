@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class RoutingController extends Controller
 {
@@ -18,7 +19,10 @@ class RoutingController extends Controller
      */
     public function root(Request $request, $first)
     {
-        return view($first);
+        if (View::exists($first)) {
+            return view($first);
+        }
+        return abort(404);
     }
 
     /**
@@ -26,6 +30,20 @@ class RoutingController extends Controller
      */
     public function secondLevel(Request $request, $first, $second)
     {
-        return view($first . '.' . $second);
+        if (View::exists($first . '.' . $second)) {
+            return view($first . '.' . $second);
+        }
+        return abort(404);
+    }
+
+    /**
+     * third level route
+     */
+    public function thirdLevel(Request $request, $first, $second, $third)
+    {
+        if (View::exists($first . '.' . $second . '.' . $third)) {
+            return view($first . '.' . $second . '.' . $third);
+        }
+        return abort(404);
     }
 }
