@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('layouts.partials.page-title', ['title' => 'Taplox', 'subtitle' => 'Painel'])
+@include('layouts.partials.page-title', ['title' => 'Hackathon', 'subtitle' => 'Painel'])
 
 <div class="row">
     <!-- Cartão 3 -->
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="col-6 text-end">
-                        <p class="text-muted mb-0 text-truncate">Eventos</p>
+                        <p class="text-muted mb-0 text-truncate">Desistentes</p>
                         <h3 class="text-dark mt-2 mb-0">5.123</h3>
                     </div>
                 </div>

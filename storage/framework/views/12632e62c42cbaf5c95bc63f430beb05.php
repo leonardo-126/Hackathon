@@ -9,4 +9,4 @@
 <meta name="theme-color" content="#ffffff">
 
 <!-- App favicon -->
-<link rel="shortcut icon" href="/images/favicon.png">
+<link rel="shortcut icon" href="/images/favicon.png"><?php /**PATH C:\Users\leopa\Taplox-Laravel_v1.0\Taplox-Laravel\resources\views/layouts/partials/title-meta.blade.php ENDPATH**/ ?>

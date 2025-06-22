@@ -60,4 +60,4 @@ class="authentication-bg"
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.base', ['subtitle' => 'Entrar'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\leopa\Taplox-Laravel_v1.0\Taplox-Laravel\resources\views/auth/signin.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.base', ['subtitle' => 'Entrar'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\leopa\Taplox-Laravel_v1.0\Taplox-Laravel\resources\views/auth/signin.blade.php ENDPATH**/ ?>

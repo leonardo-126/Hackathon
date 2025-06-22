@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
 
-<?php echo $__env->make('layouts.partials.page-title', ['title' => 'Taplox', 'subtitle' => 'Painel'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('layouts.partials.page-title', ['title' => 'Hackathon', 'subtitle' => 'Painel'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <div class="row">
     <!-- Cartão 3 -->
@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="col-6 text-end">
-                        <p class="text-muted mb-0 text-truncate">Eventos</p>
+                        <p class="text-muted mb-0 text-truncate">Desistentes</p>
                         <h3 class="text-dark mt-2 mb-0">5.123</h3>
                     </div>
                 </div>
@@ -177,4 +177,4 @@
 <?php echo app('Illuminate\Foundation\Vite')(['resources/js/pages/dashboard.js']); ?>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.vertical', ['subtitle' => 'Painel'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\leopa\Taplox-Laravel_v1.0\Taplox-Laravel\resources\views/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.vertical', ['subtitle' => 'Painel'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\leopa\Taplox-Laravel_v1.0\Taplox-Laravel\resources\views/index.blade.php ENDPATH**/ ?>
