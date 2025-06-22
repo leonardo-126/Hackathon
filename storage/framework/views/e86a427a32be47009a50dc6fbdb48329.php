@@ -1,37 +1,8 @@
 <?php $__env->startSection('content'); ?>
 
-<?php echo $__env->make('layouts.partials.page-title', ['title' => 'Taplox', 'subtitle' => 'Painel'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php echo $__env->make('layouts.partials.page-title', ['title' => 'Hackathon', 'subtitle' => 'Painel'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <div class="row">
-    <!-- Cartão 3 -->
-    <div class="col-md-6 col-xl-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="avatar-md bg-primary bg-opacity-10 rounded-circle">
-                            <iconify-icon icon="solar:calendar-date-outline"
-                                class="fs-32 text-primary avatar-title"></iconify-icon>
-                        </div>
-                    </div>
-                    <div class="col-6 text-end">
-                        <p class="text-muted mb-0 text-truncate">Eventos</p>
-                        <h3 class="text-dark mt-2 mb-0">5.123</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer border-0 py-2 bg-light bg-opacity-50 mx-2 mb-2">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div>
-                        <span class="text-success"><i class="bx bxs-up-arrow fs-12"></i> 4,78%</span>
-                        <span class="text-muted ms-1 fs-12">Desde o mês passado</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cartão 4 -->
     <div class="col-md-6 col-xl-3">
         <div class="card">
             <div class="card-body">
@@ -43,7 +14,7 @@
                         </div>
                     </div>
                     <div class="col-6 text-end">
-                        <p class="text-muted mb-0 text-truncate">Alunos Risco</p>
+                        <p class="text-muted mb-0 text-truncate">Alunos</p>
                         <h3 class="text-dark mt-2 mb-0"><?php echo e(number_format($usuariosEmRisco, 0, ',', '.')); ?></h3>
                     </div>
                 </div>
@@ -51,8 +22,34 @@
             <div class="card-footer border-0 py-2 bg-light bg-opacity-50 mx-2 mb-2">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <span class="text-success"><i class="bx bxs-up-arrow fs-12"></i> <?php echo e($porcentage); ?>%</span>
+                        <span class="text-danger"><i class="bx bxs-up-arrow fs-12"></i> <?php echo e($porcentage); ?>%</span>
                         <span class="text-muted ms-1 fs-12">Risco e Alto Risco</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="avatar-md bg-primary bg-opacity-10 rounded-circle">
+                            <iconify-icon icon="solar:users-group-two-rounded-outline"
+                                class="fs-32 text-primary avatar-title"></iconify-icon>
+                        </div>
+                    </div>
+                    <div class="col-6 text-end">
+                        <p class="text-muted mb-0 text-truncate">Alto Risco</p>
+                        <h3 class="text-dark mt-2 mb-0"><?php echo e($usuariosEmAltoRisco); ?></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer border-0 py-2 bg-light bg-opacity-50 mx-2 mb-2">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <span class="text-danger"><i class="bx bxs-up-arrow fs-12"></i><?php echo e($usuariosAltoRiscoPortcentage); ?></span>
+                        <span class="text-muted ms-1 fs-12">Usuarios de Alto Risco</span>
                     </div>
                 </div>
             </div>
@@ -61,33 +58,14 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-6">
-        <div class="card card-height-100">
-            <div class="card-header d-flex align-items-center justify-content-between gap-2">
-                <h4 class="card-title flex-grow-1">Páginas Principais</h4>
-                <div>
-                    <button type="button" class="btn btn-sm btn-outline-light">Tudo</button>
-                    <button type="button" class="btn btn-sm btn-outline-light">1M</button>
-                    <button type="button" class="btn btn-sm btn-outline-light">6M</button>
-                    <button type="button" class="btn btn-sm btn-outline-light active">1A</button>
-                </div>
-            </div>
-
-            <div class="card-body pt-0">
-                <div dir="ltr">
-                    <div id="dash-performance-chart" class="apex-charts"></div>
-                </div>
-            </div>
-
-        </div> <!-- fim do card -->
-    </div> <!-- fim da coluna -->
-</div> <!-- fim da linha -->
-
-<div class="row">
     <div class="col-12">
         <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Alunos Monitorados</h4>
+                <p class="text-muted mb-0">Utilize os campos abaixo para filtrar os resultados.</p>
+            </div>
             <div class="card-body">
-                <form method="GET" action="<?php echo e(route('dashboard')); ?>" class="row gy-2 gx-2 align-items-center">
+                <form method="GET" action="<?php echo e(route('dashboard')); ?>" class="row gy-2 gx-2 align-items-center mb-4">
                     <div class="col-xl-3 col-sm-6">
                         <label for="id_busca" class="visually-hidden">ID</label>
                         <input type="text" class="form-control" id="id_busca" name="id_busca" placeholder="Buscar por ID..." value="<?php echo e(request('id_busca')); ?>">
@@ -109,56 +87,73 @@
                         <button type="submit" class="btn btn-primary w-100">Filtrar</button>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-xl-4">
-        <div class="card">
-            <div class="table-responsive table-centered">
-                <table class="table mb-0">
-                    <thead class="bg-light bg-opacity-50">
-                        <tr>
-                            <th class="border-0 py-2">Data</th>
-                            <th class="border-0 py-2">Usuário ID</th>
-                            <th class="border-0 py-2">Risco</th>
-                            <th class="border-0 py-2">Nome</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $__currentLoopData = $alunos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $aluno): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <tr>
-                            <td><?php echo e(\Carbon\Carbon::parse($aluno->ultimo_acesso)->format('d M, Y')); ?></td>
-                            <td><?php echo e($aluno->id); ?></td>
-                            <td>
-                                <?php if($aluno->risco == 1): ?>
-                                    <span class="badge badge-soft-success">Baixo Risco</span>
-                                <?php elseif($aluno->risco == 2): ?>
-                                    <span class="badge badge-soft-warning">Risco</span>
-                                <?php else: ?>
-                                    <span class="badge badge-soft-danger">Alto Risco</span>
-                                <?php endif; ?>
-                            </td>
-                            <td><?php echo e($aluno->nome); ?></td>
-                        </tr>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </tbody>
-                </table>
-            </div> <!-- fim da tabela responsiva -->
+                <div class="table-responsive table-centered">
+                    <table class="table mb-0">
+                        <thead class="bg-light bg-opacity-50">
+                            <tr>
+                                <th class="border-0 py-2">Data</th>
+                                <th class="border-0 py-2">Usuário ID</th>
+                                <th class="border-0 py-2">Risco</th>
+                                <th class="border-0 py-2">Nome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $__currentLoopData = $alunos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $aluno): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <tr>
+                                <td><?php echo e(\Carbon\Carbon::parse($aluno->ultimo_acesso)->format('d M, Y')); ?></td>
+                                <td><?php echo e($aluno->user_id); ?></td>
+                                <td>
+                                    <?php if($aluno->risco == 1): ?>
+                                        <span class="badge badge-soft-success">Baixo Risco</span>
+                                    <?php elseif($aluno->risco == 2): ?>
+                                        <span class="badge badge-soft-warning">Risco</span>
+                                    <?php else: ?>
+                                        <span class="badge badge-soft-danger">Alto Risco</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td><?php echo e($aluno->nome); ?></td>
+                            </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </tbody>
+                    </table>
+                </div> <!-- fim da tabela responsiva -->
 
-            <div class="align-items-center justify-content-between row g-0 text-center text-sm-start p-3 border-top">
-                <div class="col-sm">
-                    <div class="text-muted">
-                        Mostrando <span class="fw-semibold"><?php echo e($alunos->firstItem()); ?></span> a <span class="fw-semibold"><?php echo e($alunos->lastItem()); ?></span> de <span class="fw-semibold"><?php echo e($alunos->total()); ?></span> usuários
+                <div class="align-items-center justify-content-between row g-0 text-center text-sm-start p-3 border-top mt-3">
+                    <div class="col-sm">
+                        <div class="text-muted">
+                            Mostrando <span class="fw-semibold"><?php echo e($alunos->firstItem()); ?></span> a <span class="fw-semibold"><?php echo e($alunos->lastItem()); ?></span> de <span class="fw-semibold"><?php echo e($alunos->total()); ?></span> usuários
+                        </div>
+                    </div>
+                    <div class="col-sm-auto mt-3 mt-sm-0">
+                        <?php echo e($alunos->links()); ?>
+
                     </div>
                 </div>
-                <div class="col-sm-auto mt-3 mt-sm-0">
-                    <?php echo e($alunos->links()); ?>
+            </div> <!-- fim do card-body -->
+        </div> <!-- fim do card -->
+    </div> <!-- fim da coluna -->
+</div> <!-- fim da linha -->
 
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card card-height-100">
+            <div class="card-header d-flex align-items-center justify-content-between gap-2">
+                <h4 class="card-title flex-grow-1">Páginas Principais</h4>
+                <div>
+                    <button type="button" class="btn btn-sm btn-outline-light">Tudo</button>
+                    <button type="button" class="btn btn-sm btn-outline-light">1M</button>
+                    <button type="button" class="btn btn-sm btn-outline-light">6M</button>
+                    <button type="button" class="btn btn-sm btn-outline-light active">1A</button>
                 </div>
             </div>
+
+            <div class="card-body pt-0">
+                <div dir="ltr">
+                    <div id="dash-performance-chart" class="apex-charts"></div>
+                </div>
+            </div>
+
         </div> <!-- fim do card -->
     </div> <!-- fim da coluna -->
 </div> <!-- fim da linha -->

@@ -26,11 +26,14 @@ class DashboardController extends Controller
 
         $usuariosEmRisco = $this->alunoService->contarAlunosEmRisco();
         $porcentage = $this->alunoService->alunosRiscoPortcentage();
+        $dadosRisco = $this->alunoService->alunosRiscoPortcentage();
+        $usuariosEmAltoRisco = $this->alunoService->AlunosEmAltoRiscoCount();
+        $usuariosAltoRiscoPortcentage = $this->alunoService->alunosAltoRiscoPortcentage();
         
         $alunos = $this->alunoService->listarAlunosPaginados($filtros)->onEachSide(0)
                     ->withQueryString();
         
-        return view('index', compact('usuariosEmRisco', 'porcentage', 'alunos'));
+        return view('index', compact('usuariosEmRisco', 'porcentage', 'alunos', 'usuariosEmAltoRisco', 'usuariosAltoRiscoPortcentage'));
     }
 
 }

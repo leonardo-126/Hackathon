@@ -21,7 +21,6 @@ export default defineConfig({
                 "resources/js/pages/dashboard.js",
                 "resources/js/pages/chart.js",
                 "resources/js/pages/form-quilljs.js",
-                "resources/js/pages/form-fileupload.js",
                 "resources/js/pages/form-flatepicker.js",
                 "resources/js/pages/table-gridjs.js",
                 "resources/js/pages/maps-google.js",

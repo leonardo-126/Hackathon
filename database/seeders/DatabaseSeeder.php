@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Taplox',
-            'email' => 'user@demo.com',
+            'name' => 'Hackathon User',
+            'email' => 'hackathon@demo.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),

@@ -372,8 +372,7 @@ class ThemeLayout {
     }
 
     setSwitchFromConfig() {
-
-        sessionStorage.setItem('__TAPLOX_CONFIG__', JSON.stringify(this.config));
+        sessionStorage.setItem('__HACKATHON_CONFIG__', JSON.stringify(this.config));
 
         document.querySelectorAll('.settings-bar input[type=radio]').forEach(function (checkbox) {
             checkbox.checked = false;

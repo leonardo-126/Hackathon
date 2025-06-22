@@ -1,6 +1,6 @@
 (function () {
 
-     var savedConfig = sessionStorage.getItem("__TAPLOX_CONFIG__");
+     var savedConfig = sessionStorage.getItem("__HACKATHON_CONFIG__");
 
      var html = document.getElementsByTagName("html")[0];
 
@@ -44,5 +44,10 @@
           } else {
                html.setAttribute("data-sidebar-size", config.menu.size);
           }
+     }
+
+     // Default Metis Menu
+     if (document.getElementById('navbar-nav')) {
+          new MetisMenu(document.getElementById('navbar-nav'));
      }
 })();

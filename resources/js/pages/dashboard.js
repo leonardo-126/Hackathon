@@ -1,7 +1,8 @@
-/**
- * Theme: Taplox- Responsive Bootstrap 5 Admin Dashboard
- * Module/App: Dashboard
- */
+/*
+* Theme: Hackathon - Responsive Bootstrap 5 Admin Dashboard
+* Author: Pixinvent
+* Module/App: Dashboard
+*/
 
 //
 //Sales Report -chart

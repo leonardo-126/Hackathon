@@ -1,7 +1,9 @@
 /*
-Template Name: Taplox- Responsive Bootstrap 5 Admin Dashboard
-Author: Stackbros
-File: datatable js
+Template Name: Hackathon - Responsive Bootstrap 5 Admin Dashboard
+Author: Pixinvent
+Website: https://Pixinvent.com/
+Contact: hello@Pixinvent.com
+File: table gridjs
 */
 import gridjs  from 'gridjs/dist/gridjs.umd.js';
 

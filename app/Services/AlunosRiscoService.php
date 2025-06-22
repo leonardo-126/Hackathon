@@ -66,6 +66,24 @@ class AlunosRiscoService
 
         return round($porcentagem, 2); //arredonda para duas casa
     }
+    public function AlunosEmAltoRiscoCount(): int
+    {
+        return Aluno::where('risco', 3)->count();
+    }
+    public function alunosAltoRiscoPortcentage()
+    {
+        $total = Aluno::count();
+
+        if ($total === 0) {
+            return 0;
+        }
+
+        $emRisco = Aluno::whereIn('risco', [3])->count();
+
+        $porcentagem = ($emRisco / $total) * 100;
+
+        return round($porcentagem, 2); //arredonda para duas casa
+    }
 
     /**
      * Lista os alunos de forma paginada.
