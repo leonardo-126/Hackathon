@@ -3,6 +3,8 @@ namespace App\Services;
 
 use App\Models\Aluno;
 use Carbon\Carbon;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Laravel\Pail\ValueObjects\Origin\Console;
 
@@ -10,6 +12,10 @@ class AlunosRiscoService
 {
     public function buscarAlunosRisco($url)
     {
+        if (Cache::has('sincronizacao_alunos_lock')) {
+            return;
+        }
+
         $response = Http::get($url);
         
         if ($response->successful()) {
@@ -26,17 +32,20 @@ class AlunosRiscoService
                 } else {
                     $risco = 3; // Alto risco
                 }
-                
-                // Processamento dos alunos e salvando no banco
-                Aluno::create([
-                    'nome' => $aluno['nome'],
-                    'ultimo_acesso' => $aluno['ultimoacesso'],
-                    'notificado' => 0,
-                    'risco' => $risco,
-                ]);
+                // Atualiza se já existir user_id, caso contrário cria novo
+                Aluno::updateOrCreate(
+                    ['user_id'      => $aluno['id']],  // condição de busca
+                    [
+                        'nome'          => $aluno['nome'],
+                        'ultimo_acesso' => $aluno['ultimoacesso'],
+                        'notificado'    => 0,
+                        'risco'         => $risco,
+                    ]
+                );
             }
+            
+            Cache::put('sincronizacao_alunos_lock', true, now()->addHours(12));
         } else {
-            dd("nao passou ");
         }
     }
     public function contarAlunosEmRisco()
@@ -45,28 +54,44 @@ class AlunosRiscoService
     }
     public function alunosRiscoPortcentage()
     {
-        $date = Carbon::now();
+        $total = Aluno::count();
 
-        $inicioMesAtual = $date->copy()->startOfMonth();
-        $fimMesAtual = $date->copy()->endOfMonth();
+        if ($total === 0) {
+            return 0;
+        }
 
-        $inicioMesPassado = $date->copy()->subMonth()->startOfMonth();
-        $fimMesPassado = $date->copy()->subMonth()->endOfMonth();
+        $emRisco = Aluno::whereIn('risco', [2, 3])->count();
 
-        $atual = Aluno::all()
-            ->whereBetween('ultimo_acesso', [$inicioMesAtual, $fimMesAtual])
-            ->count();
+        $porcentagem = ($emRisco / $total) * 100;
 
-        $passado = Aluno::all()
-            ->whereBetween('ultimo_acesso', [$inicioMesPassado, $fimMesPassado])
-            ->count();
+        return round($porcentagem, 2); //arredonda para duas casa
+    }
 
-        if ($passado == 0) {
-            return $atual > 0 ? 100 : 0; // Evita divisão por zero
-        }    
+    /**
+     * Lista os alunos de forma paginada.
+     *
+     * @param int $porPagina A quantidade de itens por página.
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function listarAlunosPaginados($filtros = [], $porPagina = 15): LengthAwarePaginator
+    {
+        $query = Aluno::query();
 
-        $crescimento = (($atual - $passado) / $passado) * 100;
+        // Filtro por ID
+        if (!empty($filtros['id'])) {
+            $query->where('id', $filtros['id']);
+        }
 
-        return Aluno::all()->count();
+        // Filtro por Nome
+        if (!empty($filtros['nome'])) {
+            $query->where('nome', 'like', '%' . $filtros['nome'] . '%');
+        }
+
+        // Filtro por Risco
+        if (!empty($filtros['risco'])) {
+            $query->where('risco', $filtros['risco']);
+        }
+
+        return $query->orderBy('ultimo_acesso', 'desc')->paginate($porPagina);
     }
 }

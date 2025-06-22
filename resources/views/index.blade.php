@@ -53,8 +53,8 @@
             <div class="card-footer border-0 py-2 bg-light bg-opacity-50 mx-2 mb-2">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <span class="text-success"><i class="bx bxs-up-arrow fs-12"></i> 2,35%</span>
-                        <span class="text-muted ms-1 fs-12">Desde o mês passado</span>
+                        <span class="text-success"><i class="bx bxs-up-arrow fs-12"></i> {{ $porcentage }}%</span>
+                        <span class="text-muted ms-1 fs-12">Risco e Alto Risco</span>
                     </div>
                 </div>
             </div>
@@ -86,6 +86,37 @@
 </div> <!-- fim da linha -->
 
 <div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="GET" action="{{ route('dashboard') }}" class="row gy-2 gx-2 align-items-center">
+                    <div class="col-xl-3 col-sm-6">
+                        <label for="id_busca" class="visually-hidden">ID</label>
+                        <input type="text" class="form-control" id="id_busca" name="id_busca" placeholder="Buscar por ID..." value="{{ request('id_busca') }}">
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <label for="nome_busca" class="visually-hidden">Nome</label>
+                        <input type="text" class="form-control" id="nome_busca" name="nome_busca" placeholder="Buscar por Nome..." value="{{ request('nome_busca') }}">
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <label for="risco_busca" class="visually-hidden">Risco</label>
+                        <select class="form-select" id="risco_busca" name="risco_busca">
+                            <option value="">Todos os Riscos</option>
+                            <option value="1" @if(request('risco_busca') == 1) selected @endif>Baixo Risco</option>
+                            <option value="2" @if(request('risco_busca') == 2) selected @endif>Risco</option>
+                            <option value="3" @if(request('risco_busca') == 3) selected @endif>Alto Risco</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-xl-4">
         <div class="card">
             <div class="table-responsive table-centered">
@@ -93,52 +124,28 @@
                     <thead class="bg-light bg-opacity-50">
                         <tr>
                             <th class="border-0 py-2">Data</th>
-                            <th class="border-0 py-2">Usuário</th>
-                            <th class="border-0 py-2">Conta</th>
-                            <th class="border-0 py-2">Nome de usuário</th>
+                            <th class="border-0 py-2">Usuário ID</th>
+                            <th class="border-0 py-2">Risco</th>
+                            <th class="border-0 py-2">Nome</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($alunos as $aluno)
                         <tr>
-                            <td>24 Abril, 2024</td>
-                            <td><img src="/images/users/avatar-2.jpg" alt="avatar-2"
-                                    class="img-fluid avatar-xs rounded-circle"> <span
-                                    class="align-middle ms-1">Dan Adrick</span></td>
-                            <td><span class="badge badge-soft-success">risco</span></td>
-                            <td>@omions</td>
+                            <td>{{ \Carbon\Carbon::parse($aluno->ultimo_acesso)->format('d M, Y') }}</td>
+                            <td>{{ $aluno->id }}</td>
+                            <td>
+                                @if ($aluno->risco == 1)
+                                    <span class="badge badge-soft-success">Baixo Risco</span>
+                                @elseif ($aluno->risco == 2)
+                                    <span class="badge badge-soft-warning">Risco</span>
+                                @else
+                                    <span class="badge badge-soft-danger">Alto Risco</span>
+                                @endif
+                            </td>
+                            <td>{{ $aluno->nome }}</td>
                         </tr>
-                        <tr>
-                            <td>24 Abril, 2024</td>
-                            <td><img src="/images/users/avatar-3.jpg" alt="avatar-3"
-                                    class="img-fluid avatar-xs rounded-circle"> <span
-                                    class="align-middle ms-1">Daniel Olsen</span></td>
-                            <td><span class="badge badge-soft-success">risco</span></td>
-                            <td>@alliates</td>
-                        </tr>
-                        <tr>
-                            <td>20 Abril, 2024</td>
-                            <td><img src="/images/users/avatar-4.jpg" alt="avatar-4"
-                                    class="img-fluid avatar-xs rounded-circle"> <span
-                                    class="align-middle ms-1">Jack Roldan</span></td>
-                            <td><span class="badge badge-soft-warning">risco</span></td>
-                            <td>@griys</td>
-                        </tr>
-                        <tr>
-                            <td>18 Abril, 2024</td>
-                            <td><img src="/images/users/avatar-5.jpg" alt="avatar-5"
-                                    class="img-fluid avatar-xs rounded-circle"> <span
-                                    class="align-middle ms-1">Betty Cox</span></td>
-                            <td><span class="badge badge-soft-success">baixo risco</span></td>
-                            <td>@reffon</td>
-                        </tr>
-                        <tr>
-                            <td>18 Abril, 2024</td>
-                            <td><img src="/images/users/avatar-6.jpg" alt="avatar-6"
-                                    class="img-fluid avatar-xs rounded-circle"> <span
-                                    class="align-middle ms-1">Carlos Johnson</span></td>
-                            <td><span class="badge badge-soft-danger">baixo risco</span></td>
-                            <td>@bebo</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div> <!-- fim da tabela responsiva -->
@@ -146,27 +153,11 @@
             <div class="align-items-center justify-content-between row g-0 text-center text-sm-start p-3 border-top">
                 <div class="col-sm">
                     <div class="text-muted">
-                        Mostrando <span class="fw-semibold">5</span> de <span class="fw-semibold">587</span> usuários
+                        Mostrando <span class="fw-semibold">{{ $alunos->firstItem() }}</span> a <span class="fw-semibold">{{ $alunos->lastItem() }}</span> de <span class="fw-semibold">{{ $alunos->total() }}</span> usuários
                     </div>
                 </div>
                 <div class="col-sm-auto mt-3 mt-sm-0">
-                    <ul class="pagination pagination-rounded m-0">
-                        <li class="page-item">
-                            <a href="#" class="page-link"><i class='bx bx-left-arrow-alt'></i></a>
-                        </li>
-                        <li class="page-item active">
-                            <a href="#" class="page-link">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link"><i class='bx bx-right-arrow-alt'></i></a>
-                        </li>
-                    </ul>
+                    {{ $alunos->links() }}
                 </div>
             </div>
         </div> <!-- fim do card -->

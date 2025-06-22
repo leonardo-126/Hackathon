@@ -11,6 +11,7 @@ class Aluno extends Model
 
     protected $fillable = [
         "nome",
+        "user_id",
         "ultimo_acesso",
         "notificado",
         "risco"

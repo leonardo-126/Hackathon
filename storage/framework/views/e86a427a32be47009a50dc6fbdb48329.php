@@ -51,8 +51,8 @@
             <div class="card-footer border-0 py-2 bg-light bg-opacity-50 mx-2 mb-2">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <span class="text-success"><i class="bx bxs-up-arrow fs-12"></i> 2,35%</span>
-                        <span class="text-muted ms-1 fs-12">Desde o mês passado</span>
+                        <span class="text-success"><i class="bx bxs-up-arrow fs-12"></i> <?php echo e($porcentage); ?>%</span>
+                        <span class="text-muted ms-1 fs-12">Risco e Alto Risco</span>
                     </div>
                 </div>
             </div>
@@ -84,6 +84,37 @@
 </div> <!-- fim da linha -->
 
 <div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="GET" action="<?php echo e(route('dashboard')); ?>" class="row gy-2 gx-2 align-items-center">
+                    <div class="col-xl-3 col-sm-6">
+                        <label for="id_busca" class="visually-hidden">ID</label>
+                        <input type="text" class="form-control" id="id_busca" name="id_busca" placeholder="Buscar por ID..." value="<?php echo e(request('id_busca')); ?>">
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <label for="nome_busca" class="visually-hidden">Nome</label>
+                        <input type="text" class="form-control" id="nome_busca" name="nome_busca" placeholder="Buscar por Nome..." value="<?php echo e(request('nome_busca')); ?>">
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <label for="risco_busca" class="visually-hidden">Risco</label>
+                        <select class="form-select" id="risco_busca" name="risco_busca">
+                            <option value="">Todos os Riscos</option>
+                            <option value="1" <?php if(request('risco_busca') == 1): ?> selected <?php endif; ?>>Baixo Risco</option>
+                            <option value="2" <?php if(request('risco_busca') == 2): ?> selected <?php endif; ?>>Risco</option>
+                            <option value="3" <?php if(request('risco_busca') == 3): ?> selected <?php endif; ?>>Alto Risco</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-xl-4">
         <div class="card">
             <div class="table-responsive table-centered">
@@ -91,52 +122,28 @@
                     <thead class="bg-light bg-opacity-50">
                         <tr>
                             <th class="border-0 py-2">Data</th>
-                            <th class="border-0 py-2">Usuário</th>
-                            <th class="border-0 py-2">Conta</th>
-                            <th class="border-0 py-2">Nome de usuário</th>
+                            <th class="border-0 py-2">Usuário ID</th>
+                            <th class="border-0 py-2">Risco</th>
+                            <th class="border-0 py-2">Nome</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $__currentLoopData = $alunos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $aluno): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td>24 Abril, 2024</td>
-                            <td><img src="/images/users/avatar-2.jpg" alt="avatar-2"
-                                    class="img-fluid avatar-xs rounded-circle"> <span
-                                    class="align-middle ms-1">Dan Adrick</span></td>
-                            <td><span class="badge badge-soft-success">risco</span></td>
-                            <td>@omions</td>
+                            <td><?php echo e(\Carbon\Carbon::parse($aluno->ultimo_acesso)->format('d M, Y')); ?></td>
+                            <td><?php echo e($aluno->id); ?></td>
+                            <td>
+                                <?php if($aluno->risco == 1): ?>
+                                    <span class="badge badge-soft-success">Baixo Risco</span>
+                                <?php elseif($aluno->risco == 2): ?>
+                                    <span class="badge badge-soft-warning">Risco</span>
+                                <?php else: ?>
+                                    <span class="badge badge-soft-danger">Alto Risco</span>
+                                <?php endif; ?>
+                            </td>
+                            <td><?php echo e($aluno->nome); ?></td>
                         </tr>
-                        <tr>
-                            <td>24 Abril, 2024</td>
-                            <td><img src="/images/users/avatar-3.jpg" alt="avatar-3"
-                                    class="img-fluid avatar-xs rounded-circle"> <span
-                                    class="align-middle ms-1">Daniel Olsen</span></td>
-                            <td><span class="badge badge-soft-success">risco</span></td>
-                            <td>@alliates</td>
-                        </tr>
-                        <tr>
-                            <td>20 Abril, 2024</td>
-                            <td><img src="/images/users/avatar-4.jpg" alt="avatar-4"
-                                    class="img-fluid avatar-xs rounded-circle"> <span
-                                    class="align-middle ms-1">Jack Roldan</span></td>
-                            <td><span class="badge badge-soft-warning">risco</span></td>
-                            <td>@griys</td>
-                        </tr>
-                        <tr>
-                            <td>18 Abril, 2024</td>
-                            <td><img src="/images/users/avatar-5.jpg" alt="avatar-5"
-                                    class="img-fluid avatar-xs rounded-circle"> <span
-                                    class="align-middle ms-1">Betty Cox</span></td>
-                            <td><span class="badge badge-soft-success">baixo risco</span></td>
-                            <td>@reffon</td>
-                        </tr>
-                        <tr>
-                            <td>18 Abril, 2024</td>
-                            <td><img src="/images/users/avatar-6.jpg" alt="avatar-6"
-                                    class="img-fluid avatar-xs rounded-circle"> <span
-                                    class="align-middle ms-1">Carlos Johnson</span></td>
-                            <td><span class="badge badge-soft-danger">baixo risco</span></td>
-                            <td>@bebo</td>
-                        </tr>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
             </div> <!-- fim da tabela responsiva -->
@@ -144,27 +151,12 @@
             <div class="align-items-center justify-content-between row g-0 text-center text-sm-start p-3 border-top">
                 <div class="col-sm">
                     <div class="text-muted">
-                        Mostrando <span class="fw-semibold">5</span> de <span class="fw-semibold">587</span> usuários
+                        Mostrando <span class="fw-semibold"><?php echo e($alunos->firstItem()); ?></span> a <span class="fw-semibold"><?php echo e($alunos->lastItem()); ?></span> de <span class="fw-semibold"><?php echo e($alunos->total()); ?></span> usuários
                     </div>
                 </div>
                 <div class="col-sm-auto mt-3 mt-sm-0">
-                    <ul class="pagination pagination-rounded m-0">
-                        <li class="page-item">
-                            <a href="#" class="page-link"><i class='bx bx-left-arrow-alt'></i></a>
-                        </li>
-                        <li class="page-item active">
-                            <a href="#" class="page-link">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link"><i class='bx bx-right-arrow-alt'></i></a>
-                        </li>
-                    </ul>
+                    <?php echo e($alunos->links()); ?>
+
                 </div>
             </div>
         </div> <!-- fim do card -->

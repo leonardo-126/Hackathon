@@ -12,6 +12,7 @@ class Alunos extends Model
     protected $table = "alunos";
     protected $fillable = [
         "nome",
+        "user_id",
         "ultimo_acesso",
         "notificado",
         "risco"

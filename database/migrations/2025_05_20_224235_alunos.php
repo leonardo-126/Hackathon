@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
+            $table->string("user_id");
             $table->string("nome");
             $table->date("ultimo_acesso");
             $table->integer("notificado")->default(0);

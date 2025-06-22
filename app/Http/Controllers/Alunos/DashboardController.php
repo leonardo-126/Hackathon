@@ -16,18 +16,21 @@ class DashboardController extends Controller
         $this->alunoService = $alunoService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $filtros = [
+            'id' => $request->get('id_busca'),
+            'nome' => $request->get('nome_busca'),
+            'risco' => $request->get('risco_busca'),
+        ];
+
         $usuariosEmRisco = $this->alunoService->contarAlunosEmRisco();
-
-        return view('index', compact('usuariosEmRisco'));
-    }
-
-    public function indexPorcentage()
-    {
-        $usuariosEmRisco = Aluno::all()->count();
-
-        return view('index', compact('usuariosEmRisco'));
+        $porcentage = $this->alunoService->alunosRiscoPortcentage();
+        
+        $alunos = $this->alunoService->listarAlunosPaginados($filtros)->onEachSide(0)
+                    ->withQueryString();
+        
+        return view('index', compact('usuariosEmRisco', 'porcentage', 'alunos'));
     }
 
 }
