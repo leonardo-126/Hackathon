@@ -12,7 +12,8 @@ class Aluno extends Model
     protected $fillable = [
         "nome",
         "ultimo_acesso",
-        "notificado"
+        "notificado",
+        "risco"
 
     ];
 

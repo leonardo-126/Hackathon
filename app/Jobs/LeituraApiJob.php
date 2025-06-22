@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Jobs;
 
 use App\Services\AlunosRiscoService;
@@ -10,11 +9,17 @@ class LeituraApiJob implements Job
 {
     protected $url;
 
+    /**
+     * Create a new job instance.
+     */
     public function __construct($url)
     {
         $this->url = $url;
     }
 
+    /**
+     * Execute the job.
+     */
     public function handle(AlunosRiscoService $alunosRiscoService)
     {
         // Dispara o método do Service dentro do Job

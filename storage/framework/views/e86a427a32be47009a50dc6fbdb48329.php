@@ -43,8 +43,8 @@
                         </div>
                     </div>
                     <div class="col-6 text-end">
-                        <p class="text-muted mb-0 text-truncate">Usuários</p>
-                        <h3 class="text-dark mt-2 mb-0">12.945</h3>
+                        <p class="text-muted mb-0 text-truncate">Alunos Risco</p>
+                        <h3 class="text-dark mt-2 mb-0"><?php echo e(number_format($usuariosEmRisco, 0, ',', '.')); ?></h3>
                     </div>
                 </div>
             </div>

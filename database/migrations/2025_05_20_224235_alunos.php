@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("nome");
             $table->date("ultimo_acesso");
             $table->integer("notificado")->default(0);
+            $table->integer("risco")->default(0);
             $table->timestamps();
         });
     }

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use function PHPSTORM_META\map;
+
 class Alunos extends Model
 {
     //
@@ -11,6 +13,7 @@ class Alunos extends Model
     protected $fillable = [
         "nome",
         "ultimo_acesso",
-        "notificado"
+        "notificado",
+        "risco"
     ];
 }
