@@ -32,6 +32,55 @@ class AlunosRiscoService
                 } else {
                     $risco = 3; // Alto risco
                 }
+
+                // Busca o aluno pelo user_id
+                $alunoModel = Aluno::where('user_id', $aluno['id'])->first();
+                $novoUltimoAcesso = $aluno['ultimoacesso'];
+
+                if ($alunoModel) {
+                    // Busca o último log desse aluno
+                    $ultimoLog = \App\Models\AlunosLog::where('aluno_id', $alunoModel->id)
+                        ->orderByDesc('created_at')
+                        ->first();
+
+                    if (!$ultimoLog) {
+                        // Nunca teve log, cria o primeiro
+                        \App\Models\AlunosLog::create([
+                            'aluno_id' => $alunoModel->id,
+                            'user_id' => $alunoModel->user_id,
+                            'nome' => $alunoModel->nome,
+                            'ultimo_acesso' => $novoUltimoAcesso,
+                        ]);
+                    } else {
+                        // Já tem log, compara o ultimo_acesso
+                        $ultimoAcessoLog = \Carbon\Carbon::parse($ultimoLog->ultimo_acesso)->format('Y-m-d H:i:s');
+                        $novoUltimoAcessoFormatado = \Carbon\Carbon::parse($novoUltimoAcesso)->format('Y-m-d H:i:s');
+                        if ($ultimoAcessoLog !== $novoUltimoAcessoFormatado) {
+                            \App\Models\AlunosLog::create([
+                                'aluno_id' => $alunoModel->id,
+                                'user_id' => $alunoModel->user_id,
+                                'nome' => $alunoModel->nome,
+                                'ultimo_acesso' => $novoUltimoAcesso,
+                            ]);
+                        }
+                    }
+                } else {
+                    // Se não existe, cria o aluno e já salva o log
+                    $novoAluno = Aluno::create([
+                        'user_id' => $aluno['id'],
+                        'nome' => $aluno['nome'],
+                        'ultimo_acesso' => $aluno['ultimoacesso'],
+                        'notificado' => 0,
+                        'risco' => $risco,
+                    ]);
+                    \App\Models\AlunosLog::create([
+                        'aluno_id' => $novoAluno->id,
+                        'user_id' => $novoAluno->user_id,
+                        'nome' => $novoAluno->nome,
+                        'ultimo_acesso' => $novoAluno->ultimo_acesso,
+                    ]);
+                }
+
                 // Atualiza se já existir user_id, caso contrário cria novo
                 Aluno::updateOrCreate(
                     ['user_id'      => $aluno['id']],  // condição de busca

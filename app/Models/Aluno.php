@@ -18,4 +18,8 @@ class Aluno extends Model
 
     ];
 
+    public function logs()
+    {
+        return $this->hasMany(\App\Models\AlunosLog::class, 'aluno_id');
+    }
 }
