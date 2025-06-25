@@ -17,6 +17,14 @@
 
 <?php echo $__env->make('layouts.partials.page-title', ['title' => 'Hackathon', 'subtitle' => 'Painel'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
+<?php
+    $usuariosEmRisco = $usuariosEmRisco ?? 0;
+    $porcentage = $porcentage ?? 0;
+    $usuariosEmAltoRisco = $usuariosEmAltoRisco ?? 0;
+    $usuariosAltoRiscoPortcentage = $usuariosAltoRiscoPortcentage ?? 0;
+    $alunos = $alunos ?? collect([]);
+?>
+
 <div class="row">
     <div class="col-md-6 col-xl-3">
         <div class="card">
@@ -115,6 +123,7 @@
                                 <th class="border-0 py-2">Usuário ID</th>
                                 <th class="border-0 py-2">Risco</th>
                                 <th class="border-0 py-2">Nome</th>
+                                <th class="border-0 py-2">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -132,6 +141,9 @@
                                     <?php endif; ?>
                                 </td>
                                 <td><?php echo e($aluno->nome); ?></td>
+                                <td>
+                                    <a href="<?php echo e(route('alunos.acessos', $aluno->id)); ?>" class="btn btn-sm btn-primary">Ver acessos</a>
+                                </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
@@ -141,7 +153,7 @@
                 <div class="align-items-center justify-content-between row g-0 text-center text-sm-start p-3 border-top mt-3">
                     <div class="col-sm">
                         <div class="text-muted">
-                            Mostrando <span class="fw-semibold"><?php echo e($alunos->firstItem()); ?></span> a <span class="fw-semibold"><?php echo e($alunos->lastItem()); ?></span> de <span class="fw-semibold"><?php echo e($alunos->total()); ?></span> usuários
+                            Mostrando <span class="fw-semibold"><?php echo e($alunos->firstItem() ?? 0); ?></span> a <span class="fw-semibold"><?php echo e($alunos->lastItem() ?? 0); ?></span> de <span class="fw-semibold"><?php echo e($alunos->total() ?? 0); ?></span> usuários
                         </div>
                     </div>
                     <div class="col-sm-auto mt-3 mt-sm-0">

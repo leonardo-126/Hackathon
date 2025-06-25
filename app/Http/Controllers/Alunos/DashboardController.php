@@ -47,4 +47,11 @@ class DashboardController extends Controller
         return redirect()->route('dashboard')->with('success', 'Dados atualizados com sucesso!');
     }
 
+    public function acessos($id)
+    {
+        $aluno = \App\Models\Aluno::findOrFail($id);
+        $logs = $aluno->logs()->orderByDesc('ultimo_acesso')->get();
+        return view('alunos.acessos', compact('aluno', 'logs'));
+    }
+
 }

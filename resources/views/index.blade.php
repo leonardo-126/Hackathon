@@ -18,6 +18,14 @@
 
 @include('layouts.partials.page-title', ['title' => 'Hackathon', 'subtitle' => 'Painel'])
 
+@php
+    $usuariosEmRisco = $usuariosEmRisco ?? 0;
+    $porcentage = $porcentage ?? 0;
+    $usuariosEmAltoRisco = $usuariosEmAltoRisco ?? 0;
+    $usuariosAltoRiscoPortcentage = $usuariosAltoRiscoPortcentage ?? 0;
+    $alunos = $alunos ?? collect([]);
+@endphp
+
 <div class="row">
     <div class="col-md-6 col-xl-3">
         <div class="card">
@@ -57,14 +65,14 @@
                     </div>
                     <div class="col-6 text-end">
                         <p class="text-muted mb-0 text-truncate">Alto Risco</p>
-                        <h3 class="text-dark mt-2 mb-0">{{$usuariosEmAltoRisco}}</h3>
+                        <h3 class="text-dark mt-2 mb-0">{{ $usuariosEmAltoRisco }}</h3>
                     </div>
                 </div>
             </div>
             <div class="card-footer border-0 py-2 bg-light bg-opacity-50 mx-2 mb-2">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <span class="text-danger"><i class="bx bxs-up-arrow fs-12"></i>{{$usuariosAltoRiscoPortcentage}}</span>
+                        <span class="text-danger"><i class="bx bxs-up-arrow fs-12"></i>{{ $usuariosAltoRiscoPortcentage }}</span>
                         <span class="text-muted ms-1 fs-12">Usuarios de Alto Risco</span>
                     </div>
                 </div>
@@ -116,6 +124,7 @@
                                 <th class="border-0 py-2">Usuário ID</th>
                                 <th class="border-0 py-2">Risco</th>
                                 <th class="border-0 py-2">Nome</th>
+                                <th class="border-0 py-2">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -133,6 +142,9 @@
                                     @endif
                                 </td>
                                 <td>{{ $aluno->nome }}</td>
+                                <td>
+                                    <a href="{{ route('alunos.acessos', $aluno->id) }}" class="btn btn-sm btn-primary">Ver acessos</a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -142,7 +154,7 @@
                 <div class="align-items-center justify-content-between row g-0 text-center text-sm-start p-3 border-top mt-3">
                     <div class="col-sm">
                         <div class="text-muted">
-                            Mostrando <span class="fw-semibold">{{ $alunos->firstItem() }}</span> a <span class="fw-semibold">{{ $alunos->lastItem() }}</span> de <span class="fw-semibold">{{ $alunos->total() }}</span> usuários
+                            Mostrando <span class="fw-semibold">{{ $alunos->firstItem() ?? 0 }}</span> a <span class="fw-semibold">{{ $alunos->lastItem() ?? 0 }}</span> de <span class="fw-semibold">{{ $alunos->total() ?? 0 }}</span> usuários
                         </div>
                     </div>
                     <div class="col-sm-auto mt-3 mt-sm-0">

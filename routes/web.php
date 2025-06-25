@@ -13,6 +13,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Botão para rodar a API manualmente
     Route::post('/dashboard/atualizar-api', [DashboardController::class, 'atualizarApi'])->name('dashboard.atualizarApi');
 
+    // Rota para exibir os acessos de um aluno
+    Route::get('/alunos/{id}/acessos', [DashboardController::class, 'acessos'])->name('alunos.acessos');
+
     // Rotas do RoutingController para outras páginas
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');
