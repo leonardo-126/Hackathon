@@ -14,10 +14,6 @@ class="authentication-bg"
                                 <a href="<?php echo e(route('any', 'index')); ?>" class="logo-dark">
                                     <img src="/images/logo-dark.png" height="60" alt="logo escuro">
                                 </a>
-
-                                <a href="<?php echo e(route('any', 'index')); ?>" class="logo-light">
-                                    <img src="/images/logo-light.png" height="60" alt="logo claro">
-                                </a>
                             </div>
                             <h4 class="fw-bold text-dark mb-2">Olá!</h4>
                             <p class="text-muted">Digite sua senha para acessar o painel de administração.</p>

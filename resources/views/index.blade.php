@@ -166,29 +166,6 @@
     </div> <!-- fim da coluna -->
 </div> <!-- fim da linha -->
 
-<div class="row">
-    <div class="col-lg-6">
-        <div class="card card-height-100">
-            <div class="card-header d-flex align-items-center justify-content-between gap-2">
-                <h4 class="card-title flex-grow-1">Páginas Principais</h4>
-                <div>
-                    <button type="button" class="btn btn-sm btn-outline-light">Tudo</button>
-                    <button type="button" class="btn btn-sm btn-outline-light">1M</button>
-                    <button type="button" class="btn btn-sm btn-outline-light">6M</button>
-                    <button type="button" class="btn btn-sm btn-outline-light active">1A</button>
-                </div>
-            </div>
-
-            <div class="card-body pt-0">
-                <div dir="ltr">
-                    <div id="dash-performance-chart" class="apex-charts"></div>
-                </div>
-            </div>
-
-        </div> <!-- fim do card -->
-    </div> <!-- fim da coluna -->
-</div> <!-- fim da linha -->
-
 @endsection
 
 @section('scripts')

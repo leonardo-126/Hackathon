@@ -16,10 +16,6 @@ class="authentication-bg"
                                 <a href="{{ route('any', 'index') }}" class="logo-dark">
                                     <img src="/images/logo-dark.png" height="60" alt="logo dark">
                                 </a>
-
-                                <a href="{{ route('any', 'index') }}" class="logo-light">
-                                    <img src="/images/logo-light.png" height="60" alt="logo light">
-                                </a>
                             </div>
                             <h4 class="fw-bold text-dark mb-2">Bem-vindo de volta!</h4>
                             <p class="text-muted">Faça login na sua conta para continuar</p>

@@ -16,10 +16,6 @@ class="authentication-bg"
                                 <a href="{{ route('any', 'index') }}" class="logo-dark">
                                     <img src="/images/logo-dark.png" height="60" alt="logo escuro">
                                 </a>
-
-                                <a href="{{ route('any', 'index') }}" class="logo-light">
-                                    <img src="/images/logo-light.png" height="60" alt="logo claro">
-                                </a>
                             </div>
                             <h4 class="fw-bold text-dark mb-2">Redefinir Senha</h4>
                             <p class="text-muted">Informe seu endereço de e-mail e enviaremos instruções para redefinir sua senha.</p>

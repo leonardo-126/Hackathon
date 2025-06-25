@@ -15,9 +15,6 @@ class="authentication-bg"
                                     <img src="/images/logo-dark.png" height="80" alt="logo escuro">
                                 </a>
 
-                                <a href="<?php echo e(route('any', 'index')); ?>" class="logo-light">
-                                    <img src="/images/logo-light.png" height="80" alt="logo claro">
-                                </a>
                             </div>
                             <h4 class="fw-bold text-dark mb-2">Cadastro</h4>
                         </div>

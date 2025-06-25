@@ -15,7 +15,7 @@
     </button>
 </form>
 
-<?php echo $__env->make('layouts.partials.page-title', ['title' => 'Hackathon', 'subtitle' => 'Painel'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php echo $__env->make('layouts.partials.page-title', ['title' => 'Hackathon', 'subtitle' => 'Painel'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <?php
     $usuariosEmRisco = $usuariosEmRisco ?? 0;
@@ -166,33 +166,10 @@
     </div> <!-- fim da coluna -->
 </div> <!-- fim da linha -->
 
-<div class="row">
-    <div class="col-lg-6">
-        <div class="card card-height-100">
-            <div class="card-header d-flex align-items-center justify-content-between gap-2">
-                <h4 class="card-title flex-grow-1">Páginas Principais</h4>
-                <div>
-                    <button type="button" class="btn btn-sm btn-outline-light">Tudo</button>
-                    <button type="button" class="btn btn-sm btn-outline-light">1M</button>
-                    <button type="button" class="btn btn-sm btn-outline-light">6M</button>
-                    <button type="button" class="btn btn-sm btn-outline-light active">1A</button>
-                </div>
-            </div>
-
-            <div class="card-body pt-0">
-                <div dir="ltr">
-                    <div id="dash-performance-chart" class="apex-charts"></div>
-                </div>
-            </div>
-
-        </div> <!-- fim do card -->
-    </div> <!-- fim da coluna -->
-</div> <!-- fim da linha -->
-
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('scripts'); ?>
 <?php echo app('Illuminate\Foundation\Vite')(['resources/js/pages/dashboard.js']); ?>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.vertical', ['subtitle' => 'Painel'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\leopa\Taplox-Laravel_v1.0\Taplox-Laravel\resources\views/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.vertical', ['subtitle' => 'Painel'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\leopa\Taplox-Laravel_v1.0\Taplox-Laravel\resources\views/index.blade.php ENDPATH**/ ?>
