@@ -27,6 +27,9 @@ return [
     'resend' => [
         'key' => env('RESEND_KEY'),
     ],
+    'alunos_api' => [
+      'url' => env('ALUNOS_API_URL', 'http://localhost:5000/usuarioscomrisco'), //definindo o service
+    ],
 
     'slack' => [
         'notifications' => [

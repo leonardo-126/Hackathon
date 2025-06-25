@@ -22,6 +22,7 @@ class DashboardController extends Controller
             'id' => $request->get('id_busca'),
             'nome' => $request->get('nome_busca'),
             'risco' => $request->get('risco_busca'),
+            'data' => $request->get('data_busca'),
         ];
 
         $usuariosEmRisco = $this->alunoService->contarAlunosEmRisco();
@@ -34,6 +35,16 @@ class DashboardController extends Controller
                     ->withQueryString();
         
         return view('index', compact('usuariosEmRisco', 'porcentage', 'alunos', 'usuariosEmAltoRisco', 'usuariosAltoRiscoPortcentage'));
+    }
+
+    public function atualizarApi(Request $request)
+    {
+        // Limpa o cache antes de rodar a API
+        \Cache::forget('sincronizacao_alunos_lock');
+        //dd('teste');
+        $url = config('services.alunos_api.url', 'http://localhost:5000/usuarioscomrisco');
+        $this->alunoService->buscarAlunosRisco($url);
+        return redirect()->route('dashboard')->with('success', 'Dados atualizados com sucesso!');
     }
 
 }

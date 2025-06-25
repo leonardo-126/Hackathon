@@ -2,6 +2,20 @@
 
 @section('content')
 
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+<form method="POST" action="{{ route('dashboard.atualizarApi') }}" class="mb-3">
+    @csrf
+    <button type="submit" class="btn btn-success">
+        Atualizar Dados da API
+    </button>
+</form>
+
 @include('layouts.partials.page-title', ['title' => 'Hackathon', 'subtitle' => 'Painel'])
 
 <div class="row">
@@ -69,12 +83,16 @@
             <div class="card-body">
                 <form method="GET" action="{{ route('dashboard') }}" class="row gy-2 gx-2 align-items-center mb-4">
                     <div class="col-xl-3 col-sm-6">
-                        <label for="id_busca" class="visually-hidden">ID</label>
-                        <input type="text" class="form-control" id="id_busca" name="id_busca" placeholder="Buscar por ID..." value="{{ request('id_busca') }}">
+                        <label for="id_busca" class="visually-hidden">User ID</label>
+                        <input type="text" class="form-control" id="id_busca" name="id_busca" placeholder="Buscar por User ID..." value="{{ request('id_busca') }}">
                     </div>
                     <div class="col-xl-3 col-sm-6">
                         <label for="nome_busca" class="visually-hidden">Nome</label>
                         <input type="text" class="form-control" id="nome_busca" name="nome_busca" placeholder="Buscar por Nome..." value="{{ request('nome_busca') }}">
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <label for="data_busca" class="visually-hidden">Último Acesso</label>
+                        <input type="date" class="form-control" id="data_busca" name="data_busca" placeholder="Buscar por Data..." value="{{ request('data_busca') }}">
                     </div>
                     <div class="col-xl-3 col-sm-6">
                         <label for="risco_busca" class="visually-hidden">Risco</label>

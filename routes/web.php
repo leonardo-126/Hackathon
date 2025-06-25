@@ -10,6 +10,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Rota principal para o dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Botão para rodar a API manualmente
+    Route::post('/dashboard/atualizar-api', [DashboardController::class, 'atualizarApi'])->name('dashboard.atualizarApi');
+
     // Rotas do RoutingController para outras páginas
     Route::get('{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])->name('third');
     Route::get('{first}/{second}', [RoutingController::class, 'secondLevel'])->name('second');

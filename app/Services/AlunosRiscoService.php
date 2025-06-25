@@ -95,12 +95,12 @@ class AlunosRiscoService
     {
         $query = Aluno::query();
 
-        // Filtro por ID
+        // Filtro por user_id
         if (!empty($filtros['id'])) {
-            $query->where('id', $filtros['id']);
+            $query->where('user_id', $filtros['id']);
         }
 
-        // Filtro por Nome
+        // Filtro por Nome (LIKE)
         if (!empty($filtros['nome'])) {
             $query->where('nome', 'like', '%' . $filtros['nome'] . '%');
         }
@@ -108,6 +108,11 @@ class AlunosRiscoService
         // Filtro por Risco
         if (!empty($filtros['risco'])) {
             $query->where('risco', $filtros['risco']);
+        }
+
+        // Filtro por Data de Último Acesso
+        if (!empty($filtros['data'])) {
+            $query->whereDate('ultimo_acesso', $filtros['data']);
         }
 
         return $query->orderBy('ultimo_acesso', 'desc')->paginate($porPagina);
