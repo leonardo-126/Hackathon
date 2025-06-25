@@ -50,34 +50,38 @@
             <h5 class="mb-0">Histórico de Avaliações</h5>
         </div>
         <div class="card-body p-0">
-            <table class="table mb-0">
-                <thead>
-                    <tr>
-                        <th>Data/Hora</th>
-                        <th>Nota</th>
-                        <th>Relatório</th>
-                        <th>Avaliação</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $__empty_1 = true; $__currentLoopData = $historico; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $av): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead>
                         <tr>
-                            <td><?php echo e($av->created_at->format('d/m/Y H:i:s')); ?></td>
-                            <td><?php echo e($av->nota ?? '-'); ?></td>
-                            <td><?php echo e($av->relatorio ?? '-'); ?></td>
-                            <td><?php echo e($av->avaliacao ?? '-'); ?></td>
-                            <td>
-                                <a href="<?php echo e(route('avaliacao.pdf', $av->id)); ?>" class="btn btn-sm btn-danger">Exportar PDF</a>
-                            </td>
+                            <th>Data/Hora</th>
+                            <th>Nota</th>
+                            <th>Relatório</th>
+                            <th>Avaliação</th>
+                            <th>Ações</th>
                         </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                        <tr>
-                            <td colspan="4">Nenhuma avaliação registrada.</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $__empty_1 = true; $__currentLoopData = $historico; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $av): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <tr>
+                                <td><?php echo e($av->created_at->format('d/m/Y H:i:s')); ?></td>
+                                <td><?php echo e($av->nota ?? '-'); ?></td>
+                                <td><?php echo e($av->relatorio ?? '-'); ?></td>
+                                <td><?php echo e($av->avaliacao ?? '-'); ?></td>
+                                <td>
+                                    <div class="d-grid gap-2 d-md-block">
+                                        <a href="<?php echo e(route('avaliacao.pdf', $av->id)); ?>" class="btn btn-sm btn-danger">Exportar PDF</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                            <tr>
+                                <td colspan="5">Nenhuma avaliação registrada.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <a href="<?php echo e(route('dashboard')); ?>" class="btn btn-secondary mt-3 mb-3">Voltar</a>

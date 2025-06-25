@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Aluno;
 use App\Models\Avaliacao;
 use Illuminate\Support\Facades\Http;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Cache;
 
 use App\Services\AlunosRiscoService;
@@ -99,7 +100,7 @@ class DashboardController extends Controller
     {
         $avaliacao = Avaliacao::findOrFail($avaliacaoId);
         $aluno = $avaliacao->aluno;
-        $pdf = \PDF::loadView('alunos.avaliacao_pdf', compact('aluno', 'avaliacao'));
+        $pdf = PDF::loadView('alunos.avaliacao_pdf', compact('aluno', 'avaliacao'));
         $nomeArquivo = 'avaliacao_' . $aluno->user_id . '_' . $avaliacao->id . '.pdf';
         return $pdf->download($nomeArquivo);
     }

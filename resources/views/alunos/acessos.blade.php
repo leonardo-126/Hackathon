@@ -49,34 +49,38 @@
             <h5 class="mb-0">Histórico de Avaliações</h5>
         </div>
         <div class="card-body p-0">
-            <table class="table mb-0">
-                <thead>
-                    <tr>
-                        <th>Data/Hora</th>
-                        <th>Nota</th>
-                        <th>Relatório</th>
-                        <th>Avaliação</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($historico as $av)
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead>
                         <tr>
-                            <td>{{ $av->created_at->format('d/m/Y H:i:s') }}</td>
-                            <td>{{ $av->nota ?? '-' }}</td>
-                            <td>{{ $av->relatorio ?? '-' }}</td>
-                            <td>{{ $av->avaliacao ?? '-' }}</td>
-                            <td>
-                                <a href="{{ route('avaliacao.pdf', $av->id) }}" class="btn btn-sm btn-danger">Exportar PDF</a>
-                            </td>
+                            <th>Data/Hora</th>
+                            <th>Nota</th>
+                            <th>Relatório</th>
+                            <th>Avaliação</th>
+                            <th>Ações</th>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4">Nenhuma avaliação registrada.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse($historico as $av)
+                            <tr>
+                                <td>{{ $av->created_at->format('d/m/Y H:i:s') }}</td>
+                                <td>{{ $av->nota ?? '-' }}</td>
+                                <td>{{ $av->relatorio ?? '-' }}</td>
+                                <td>{{ $av->avaliacao ?? '-' }}</td>
+                                <td>
+                                    <div class="d-grid gap-2 d-md-block">
+                                        <a href="{{ route('avaliacao.pdf', $av->id) }}" class="btn btn-sm btn-danger">Exportar PDF</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5">Nenhuma avaliação registrada.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <a href="{{ route('dashboard') }}" class="btn btn-secondary mt-3 mb-3">Voltar</a>
