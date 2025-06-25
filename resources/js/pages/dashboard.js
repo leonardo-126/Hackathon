@@ -1,12 +1,3 @@
-/*
-* Theme: Hackathon - Responsive Bootstrap 5 Admin Dashboard
-* Author: Pixinvent
-* Module/App: Dashboard
-*/
-
-//
-//Sales Report -chart
-//
 import ApexCharts from "apexcharts";
 window.ApexCharts= ApexCharts
 

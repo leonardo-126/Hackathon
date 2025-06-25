@@ -22,4 +22,9 @@ class Aluno extends Model
     {
         return $this->hasMany(\App\Models\AlunosLog::class, 'aluno_id');
     }
+
+    public function avaliacaos()
+    {
+        return $this->hasMany(\App\Models\Avaliacao::class, 'aluno_id');
+    }
 }
